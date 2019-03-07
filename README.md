@@ -115,7 +115,7 @@ Contributors are welcomed to join the FEATS project. Please check [CONTRIBUTING]
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/alibaba/fescar/graphs/contributors"><img src="https://opencollective.com/fescar/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/alibaba/fescar/graphs/contributors"><img src="https://opencollective.com/fescar/contributors.svg?width=1024&button=false" /></a>
 
 ## License
 
