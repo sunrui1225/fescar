@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import java.lang.reflect.Method;
@@ -33,12 +32,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * @Author: jimin.jm@alibaba-inc.com
- * @Author: xiajun.0706@163.com
- * @Project: fescar-all
- * @DateTime: 2019/01/25 08:32
- * @FileName: TmRpcClientTest
- * @Description:
+ * @author jimin.jm@alibaba-inc.com
+ * @date 2019/01/25
  */
 @Ignore
 public class TmRpcClientTest {

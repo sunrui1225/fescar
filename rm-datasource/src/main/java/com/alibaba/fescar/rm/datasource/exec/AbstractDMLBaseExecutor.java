@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.exec;
 
 import java.sql.SQLException;
@@ -44,7 +43,8 @@ public abstract class AbstractDMLBaseExecutor<T, S extends Statement> extends Ba
      * @param statementCallback the statement callback
      * @param sqlRecognizer     the sql recognizer
      */
-    public AbstractDMLBaseExecutor(StatementProxy<S> statementProxy, StatementCallback<T, S> statementCallback, SQLRecognizer sqlRecognizer) {
+    public AbstractDMLBaseExecutor(StatementProxy<S> statementProxy, StatementCallback<T, S> statementCallback,
+                                   SQLRecognizer sqlRecognizer) {
         super(statementProxy, statementCallback, sqlRecognizer);
     }
 

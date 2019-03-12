@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -25,11 +24,8 @@ import com.alibaba.fescar.server.coordinator.DefaultCoordinator;
 /**
  * The type Server test.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/4 19:34
- * @FileName: ServerTest
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /12/4
  */
 public class ServerTest {
 

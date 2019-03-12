@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import java.net.InetSocketAddress;
@@ -31,6 +30,7 @@ import com.alibaba.fescar.common.XID;
 import com.alibaba.fescar.common.exception.FrameworkErrorCode;
 import com.alibaba.fescar.common.exception.FrameworkException;
 import com.alibaba.fescar.common.thread.NamedThreadFactory;
+import com.alibaba.fescar.common.thread.RejectedPolicies;
 import com.alibaba.fescar.common.util.NetUtil;
 import com.alibaba.fescar.config.Configuration;
 import com.alibaba.fescar.config.ConfigurationFactory;
@@ -62,11 +62,8 @@ import static com.alibaba.fescar.common.exception.FrameworkErrorCode.NoAvailable
 /**
  * The type Rpc client.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/23 15:52
- * @FileName: TmRpcClient
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/23
  */
 @Sharable
 public final class TmRpcClient extends AbstractRpcRemotingClient {
@@ -128,7 +125,7 @@ public final class TmRpcClient extends AbstractRpcRemotingClient {
                         new LinkedBlockingQueue(MAX_QUEUE_SIZE),
                         new NamedThreadFactory(nettyClientConfig.getTmDispatchThreadPrefix(),
                             nettyClientConfig.getClientWorkerThreads()),
-                        new ThreadPoolExecutor.CallerRunsPolicy());
+                        RejectedPolicies.runsOldestTaskPolicy());
                     instance = new TmRpcClient(nettyClientConfig, null, threadPoolExecutor);
                 }
             }

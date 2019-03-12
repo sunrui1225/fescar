@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import io.netty.channel.Channel;
@@ -24,11 +23,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Default channel pool handler.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/10 17:46
- * @FileName: DefaultChannelPoolHandler
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/10
  */
 public class DefaultChannelPoolHandler extends AbstractChannelPoolHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultChannelPoolHandler.class);

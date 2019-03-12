@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import com.alibaba.fescar.core.protocol.RegisterRMRequest;
@@ -22,11 +21,8 @@ import com.alibaba.fescar.core.protocol.RegisterTMRequest;
 /**
  * The interface Register check auth handler.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/7 16:56
- * @FileName: RegisterCheckAuthHandler
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /12/7
  */
 public interface RegisterCheckAuthHandler {
 

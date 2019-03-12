@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol;
 
 import io.netty.buffer.ByteBuf;
@@ -23,7 +22,8 @@ import io.netty.buffer.ByteBuf;
  */
 public abstract class AbstractIdentifyResponse extends AbstractResultMessage {
 
-    private String version = Version.CURRENT;;
+    private String version = Version.CURRENT;
+    ;
 
     private String extraData;
 
@@ -85,16 +85,16 @@ public abstract class AbstractIdentifyResponse extends AbstractResultMessage {
 
     @Override
     public void doEncode() {
-//        super.doEncode();
-        byteBuffer.put(this.identified ? (byte) 1 : (byte) 0);
+        //        super.doEncode();
+        byteBuffer.put(this.identified ? (byte)1 : (byte)0);
         if (this.version != null) {
             byte[] bs = version.getBytes(UTF8);
-            byteBuffer.putShort((short) bs.length);
+            byteBuffer.putShort((short)bs.length);
             if (bs.length > 0) {
                 byteBuffer.put(bs);
             }
         } else {
-            byteBuffer.putShort((short) 0);
+            byteBuffer.putShort((short)0);
         }
 
     }
@@ -139,7 +139,6 @@ public abstract class AbstractIdentifyResponse extends AbstractResultMessage {
         result.append(",");
         result.append("msg=");
         result.append(String.valueOf(getMsg()));
-
 
         return result.toString();
     }

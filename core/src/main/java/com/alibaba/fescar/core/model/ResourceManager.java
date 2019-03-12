@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.model;
 
 import java.util.Map;
@@ -21,7 +20,7 @@ import java.util.Map;
 /**
  * Resource Manager: common behaviors.
  */
-public interface ResourceManager extends ResourceManagerInbound, ResourceManagerOutbound{
+public interface ResourceManager extends ResourceManagerInbound, ResourceManagerOutbound {
 
     /**
      * Register a Resource to be managed by Resource Manager.
@@ -43,4 +42,10 @@ public interface ResourceManager extends ResourceManagerInbound, ResourceManager
      * @return resourceId -> Resource Map
      */
     Map<String, Resource> getManagedResources();
+
+    /**
+     * get the BranchType
+     * @return
+     */
+    BranchType getBranchType();
 }

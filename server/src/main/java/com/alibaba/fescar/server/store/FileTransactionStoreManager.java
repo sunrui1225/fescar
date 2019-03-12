@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.store;
 
 import java.io.File;
@@ -98,6 +97,10 @@ public class FileTransactionStoreManager implements TransactionStoreManager {
         try {
             currDataFile = new File(currFullFileName);
             if (!currDataFile.exists()) {
+                //create parent dir first
+                if (currDataFile.getParentFile() != null && !currDataFile.getParentFile().exists()) {
+                    currDataFile.getParentFile().mkdirs();
+                }
                 currDataFile.createNewFile();
                 trxStartTimeMills = System.currentTimeMillis();
             } else {

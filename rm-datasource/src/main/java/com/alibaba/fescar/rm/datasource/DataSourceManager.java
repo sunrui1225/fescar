@@ -13,16 +13,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource;
 
+import java.net.InetSocketAddress;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
 
 import com.alibaba.fescar.common.XID;
+import com.alibaba.fescar.common.exception.FrameworkException;
 import com.alibaba.fescar.common.exception.NotSupportYetException;
 import com.alibaba.fescar.common.exception.ShouldNeverHappenException;
+import com.alibaba.fescar.common.util.NetUtil;
+import com.alibaba.fescar.core.context.RootContext;
+import com.alibaba.fescar.common.executor.Initialize;
 import com.alibaba.fescar.core.exception.TransactionException;
 import com.alibaba.fescar.core.exception.TransactionExceptionCode;
 import com.alibaba.fescar.core.model.BranchStatus;
@@ -37,13 +42,29 @@ import com.alibaba.fescar.core.protocol.transaction.BranchReportRequest;
 import com.alibaba.fescar.core.protocol.transaction.BranchReportResponse;
 import com.alibaba.fescar.core.protocol.transaction.GlobalLockQueryRequest;
 import com.alibaba.fescar.core.protocol.transaction.GlobalLockQueryResponse;
+import com.alibaba.fescar.core.rpc.netty.NettyClientConfig;
 import com.alibaba.fescar.core.rpc.netty.RmRpcClient;
+import com.alibaba.fescar.core.rpc.netty.TmRpcClient;
+import com.alibaba.fescar.discovery.loadbalance.LoadBalanceFactory;
+import com.alibaba.fescar.discovery.registry.RegistryFactory;
+import com.alibaba.fescar.rm.AbstractResourceManager;
 import com.alibaba.fescar.rm.datasource.undo.UndoLogManager;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static com.alibaba.fescar.common.exception.FrameworkErrorCode.NoAvailableService;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeoutException;
 
 /**
  * The type Data source manager.
  */
-public class DataSourceManager implements ResourceManager {
+public class DataSourceManager extends AbstractResourceManager implements Initialize {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceManager.class);
 
     private ResourceManagerInbound asyncWorker;
 
@@ -59,58 +80,28 @@ public class DataSourceManager implements ResourceManager {
     }
 
     @Override
-    public Long branchRegister(BranchType branchType, String resourceId, String clientId, String xid, String lockKeys) throws TransactionException {
-        try {
-            BranchRegisterRequest request = new BranchRegisterRequest();
-            request.setTransactionId(XID.getTransactionId(xid));
-            request.setLockKey(lockKeys);
-            request.setResourceId(resourceId);
-            request.setBranchType(branchType);
-
-            BranchRegisterResponse response = (BranchRegisterResponse) RmRpcClient.getInstance().sendMsgWithResponse(request);
-            if (response.getResultCode() == ResultCode.Failed) {
-                throw new TransactionException(response.getTransactionExceptionCode(), "Response[" + response.getMsg() + "]");
-            }
-            return response.getBranchId();
-        } catch (TimeoutException toe) {
-            throw new TransactionException(TransactionExceptionCode.IO, "RPC Timeout", toe);
-        } catch (RuntimeException rex) {
-            throw new TransactionException(TransactionExceptionCode.BranchRegisterFailed, "Runtime", rex);
-        }
-    }
-
-    @Override
-    public void branchReport(String xid, long branchId, BranchStatus status, String applicationData) throws TransactionException {
-        try {
-            BranchReportRequest request = new BranchReportRequest();
-            request.setTransactionId(XID.getTransactionId(xid));
-            request.setBranchId(branchId);
-            request.setStatus(status);
-            request.setApplicationData(applicationData);
-
-            BranchReportResponse response = (BranchReportResponse) RmRpcClient.getInstance().sendMsgWithResponse(request);
-            if (response.getResultCode() == ResultCode.Failed) {
-                throw new TransactionException(response.getTransactionExceptionCode(), "Response[" + response.getMsg() + "]");
-            }
-        } catch (TimeoutException toe) {
-            throw new TransactionException(TransactionExceptionCode.IO, "RPC Timeout", toe);
-        } catch (RuntimeException rex) {
-            throw new TransactionException(TransactionExceptionCode.BranchReportFailed, "Runtime", rex);
-        }
-
-    }
-
-    @Override
-    public boolean lockQuery(BranchType branchType, String resourceId, String xid, String lockKeys) throws TransactionException {
+    public boolean lockQuery(BranchType branchType, String resourceId, String xid, String lockKeys)
+        throws TransactionException {
         try {
             GlobalLockQueryRequest request = new GlobalLockQueryRequest();
             request.setTransactionId(XID.getTransactionId(xid));
             request.setLockKey(lockKeys);
             request.setResourceId(resourceId);
+            request.setBranchType(branchType);
 
-            GlobalLockQueryResponse response = (GlobalLockQueryResponse) RmRpcClient.getInstance().sendMsgWithResponse(request);
+            GlobalLockQueryResponse response = null;
+            if (RootContext.inGlobalTransaction()) {
+                response = (GlobalLockQueryResponse)RmRpcClient.getInstance().sendMsgWithResponse(request);
+            } else if (RootContext.requireGlobalLock()) {
+                response = (GlobalLockQueryResponse)RmRpcClient.getInstance().sendMsgWithResponse(loadBalance(),
+                    request, NettyClientConfig.getRpcRequestTimeout());
+            } else {
+                throw new RuntimeException("unknow situation!");
+            }
+
             if (response.getResultCode() == ResultCode.Failed) {
-                throw new TransactionException(response.getTransactionExceptionCode(), "Response[" + response.getMsg() + "]");
+                throw new TransactionException(response.getTransactionExceptionCode(),
+                    "Response[" + response.getMsg() + "]");
             }
             return response.isLockable();
         } catch (TimeoutException toe) {
@@ -118,11 +109,29 @@ public class DataSourceManager implements ResourceManager {
         } catch (RuntimeException rex) {
             throw new TransactionException(TransactionExceptionCode.LockableCheckFailed, "Runtime", rex);
         }
+    }
 
+    /**
+     * for test
+     */
+    @SuppressWarnings("unchecked")
+    private String loadBalance() {
+        InetSocketAddress address = null;
+        try {
+            List<InetSocketAddress> inetSocketAddressList = RegistryFactory.getInstance().lookup(
+                TmRpcClient.getInstance().getTransactionServiceGroup());
+            address = LoadBalanceFactory.getInstance().select(inetSocketAddressList);
+        } catch (Exception ignore) {
+            LOGGER.error(ignore.getMessage());
+        }
+        if (address == null) {
+            throw new FrameworkException(NoAvailableService);
+        }
+        return NetUtil.toStringAddress(address);
     }
 
     private static class SingletonHolder {
-        private static DataSourceManager INSTANCE = new DataSourceManager();
+        private static DataSourceManager INSTANCE = new DataSourceManager(true);
     }
 
     /**
@@ -148,22 +157,35 @@ public class DataSourceManager implements ResourceManager {
      *
      * @param asyncWorker the async worker
      */
-    public static synchronized void init(ResourceManagerInbound asyncWorker) {
-        get().setAsyncWorker(asyncWorker);
+    public synchronized void initAsyncWorker(ResourceManagerInbound asyncWorker) {
+        setAsyncWorker(asyncWorker);
     }
 
     /**
      * Instantiates a new Data source manager.
      */
-    protected DataSourceManager() {
+    public DataSourceManager() {
+    }
+
+    public DataSourceManager(boolean isInit) {
+        if(isInit){
+            init();
+        }
+
+    }
+
+    @Override
+    public void init(){
+        AsyncWorker asyncWorker = new AsyncWorker();
+        asyncWorker.init();
+        initAsyncWorker(asyncWorker);
     }
 
     @Override
     public void registerResource(Resource resource) {
         DataSourceProxy dataSourceProxy = (DataSourceProxy) resource;
         dataSourceCache.put(dataSourceProxy.getResourceId(), dataSourceProxy);
-        RmRpcClient.getInstance().registerResource(dataSourceProxy.getResourceGroupId(), dataSourceProxy.getResourceId());
-
+        super.registerResource(dataSourceProxy);
     }
 
     @Override
@@ -178,16 +200,16 @@ public class DataSourceManager implements ResourceManager {
      * @return the data source proxy
      */
     public DataSourceProxy get(String resourceId) {
-        return (DataSourceProxy) dataSourceCache.get(resourceId);
+        return (DataSourceProxy)dataSourceCache.get(resourceId);
     }
 
     @Override
-    public BranchStatus branchCommit(String xid, long branchId, String resourceId, String applicationData) throws TransactionException {
-        return asyncWorker.branchCommit(xid, branchId, resourceId, applicationData);
+    public BranchStatus branchCommit(BranchType branchType, String xid, long branchId, String resourceId, String applicationData) throws TransactionException {
+        return asyncWorker.branchCommit(branchType, xid, branchId, resourceId, applicationData);
     }
 
     @Override
-    public BranchStatus branchRollback(String xid, long branchId, String resourceId, String applicationData) throws TransactionException {
+    public BranchStatus branchRollback(BranchType branchType, String xid, long branchId, String resourceId, String applicationData) throws TransactionException {
         DataSourceProxy dataSourceProxy = get(resourceId);
         if (dataSourceProxy == null) {
             throw new ShouldNeverHappenException();
@@ -209,4 +231,10 @@ public class DataSourceManager implements ResourceManager {
     public Map<String, Resource> getManagedResources() {
         return dataSourceCache;
     }
+
+    @Override
+    public BranchType getBranchType(){
+        return BranchType.AT;
+    }
+
 }

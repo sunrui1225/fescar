@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.tm;
 
 import java.util.concurrent.TimeoutException;
@@ -55,6 +54,7 @@ public class DefaultTransactionManager implements TransactionManager {
 
     /**
      * Set a TM instance.
+     *
      * @param mock commonly used for test mocking
      */
     public static void set(TransactionManager mock) {
@@ -66,11 +66,12 @@ public class DefaultTransactionManager implements TransactionManager {
     }
 
     @Override
-    public String begin(String applicationId, String transactionServiceGroup, String name, int timeout) throws TransactionException {
+    public String begin(String applicationId, String transactionServiceGroup, String name, int timeout)
+        throws TransactionException {
         GlobalBeginRequest request = new GlobalBeginRequest();
         request.setTransactionName(name);
         request.setTimeout(timeout);
-        GlobalBeginResponse response = (GlobalBeginResponse) syncCall(request);
+        GlobalBeginResponse response = (GlobalBeginResponse)syncCall(request);
         return response.getXid();
     }
 
@@ -79,7 +80,7 @@ public class DefaultTransactionManager implements TransactionManager {
         long txId = XID.getTransactionId(xid);
         GlobalCommitRequest globalCommit = new GlobalCommitRequest();
         globalCommit.setTransactionId(txId);
-        GlobalCommitResponse response = (GlobalCommitResponse) syncCall(globalCommit);
+        GlobalCommitResponse response = (GlobalCommitResponse)syncCall(globalCommit);
         return response.getGlobalStatus();
     }
 
@@ -88,7 +89,7 @@ public class DefaultTransactionManager implements TransactionManager {
         long txId = XID.getTransactionId(xid);
         GlobalRollbackRequest globalRollback = new GlobalRollbackRequest();
         globalRollback.setTransactionId(txId);
-        GlobalRollbackResponse response = (GlobalRollbackResponse) syncCall(globalRollback);
+        GlobalRollbackResponse response = (GlobalRollbackResponse)syncCall(globalRollback);
         return response.getGlobalStatus();
     }
 
@@ -97,13 +98,13 @@ public class DefaultTransactionManager implements TransactionManager {
         long txId = XID.getTransactionId(xid);
         GlobalStatusRequest queryGlobalStatus = new GlobalStatusRequest();
         queryGlobalStatus.setTransactionId(txId);
-        GlobalStatusResponse response = (GlobalStatusResponse) syncCall(queryGlobalStatus);
+        GlobalStatusResponse response = (GlobalStatusResponse)syncCall(queryGlobalStatus);
         return response.getGlobalStatus();
     }
 
     private AbstractTransactionResponse syncCall(AbstractTransactionRequest request) throws TransactionException {
         try {
-            return (AbstractTransactionResponse) TmRpcClient.getInstance().sendMsgWithResponse(request);
+            return (AbstractTransactionResponse)TmRpcClient.getInstance().sendMsgWithResponse(request);
         } catch (TimeoutException toe) {
             throw new TransactionException(TransactionExceptionCode.IO, toe);
         }

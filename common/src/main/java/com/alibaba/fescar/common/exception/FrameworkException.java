@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.common.exception;
 
 import java.sql.SQLException;
@@ -24,11 +23,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Framework exception.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/9 15:34
- * @FileName: FrameworkException
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/9
  */
 public class FrameworkException extends RuntimeException {
     private static final Logger LOGGER = LoggerFactory.getLogger(FrameworkException.class);

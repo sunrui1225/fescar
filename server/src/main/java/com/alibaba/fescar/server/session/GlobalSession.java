@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.session;
 
 import java.nio.ByteBuffer;
@@ -79,7 +78,8 @@ public class GlobalSession implements SessionLifecycle, SessionStorable {
      */
     public boolean canBeCommittedAsync() {
         for (BranchSession branchSession : branchSessions) {
-            if (branchSession.getBranchType() == BranchType.MT) {
+            if (branchSession.getBranchType() == BranchType.MT
+                    || branchSession.getBranchType() == BranchType.TCC) {
                 return false;
             }
         }

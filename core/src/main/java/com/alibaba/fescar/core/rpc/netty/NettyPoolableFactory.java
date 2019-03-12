@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import java.net.InetSocketAddress;
@@ -32,11 +31,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Netty key poolable factory.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /11/19 15:14
- * @FileName: NettyPoolableFactory
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /11/19
  */
 public class NettyPoolableFactory implements KeyedPoolableObjectFactory<NettyPoolKey, Channel> {
 

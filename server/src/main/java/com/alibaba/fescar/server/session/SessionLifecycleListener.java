@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.session;
 
 import com.alibaba.fescar.core.exception.TransactionException;
@@ -50,7 +49,8 @@ public interface SessionLifecycleListener {
      * @param status        the status
      * @throws TransactionException the transaction exception
      */
-    void onBranchStatusChange(GlobalSession globalSession, BranchSession branchSession, BranchStatus status) throws TransactionException;
+    void onBranchStatusChange(GlobalSession globalSession, BranchSession branchSession, BranchStatus status)
+        throws TransactionException;
 
     /**
      * On add branch.

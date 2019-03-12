@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.model;
 
 /**
@@ -36,5 +35,12 @@ public interface Resource {
      * @return resource id.
      */
     String getResourceId();
+
+    /**
+     * get resource type, AT、TCC etc.
+     *
+     * @return
+     */
+    BranchType getBranchType();
 
 }

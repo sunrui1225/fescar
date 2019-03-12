@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.config;
 
 import java.util.List;
@@ -31,11 +30,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Nacos configuration.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2019 /2/1 1:53 PM
- * @FileName: NacosConfiguration
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2019 /2/1
  */
 public class NacosConfiguration extends AbstractConfiguration<Listener> {
 
@@ -46,6 +42,11 @@ public class NacosConfiguration extends AbstractConfiguration<Listener> {
     private static final Configuration FILE_CONFIG = ConfigurationFactory.FILE_INSTANCE;
     private static volatile ConfigService configService;
 
+    /**
+     * Instantiates a new Nacos configuration.
+     *
+     * @throws NacosException the nacos exception
+     */
     public NacosConfiguration() throws NacosException {
         if (null == configService) {
             configService = NacosFactory.createConfigService(getConfigProperties());
@@ -124,7 +125,8 @@ public class NacosConfiguration extends AbstractConfiguration<Listener> {
     }
 
     private static String getNacosAddrFileKey() {
-        return FILE_ROOT_REGISTRY + FILE_CONFIG_SPLIT_CHAR + REGISTRY_TYPE + FILE_CONFIG_SPLIT_CHAR
+        return ConfigurationKeys.FILE_ROOT_REGISTRY + ConfigurationKeys.FILE_CONFIG_SPLIT_CHAR + REGISTRY_TYPE
+            + ConfigurationKeys.FILE_CONFIG_SPLIT_CHAR
             + PRO_SERVER_ADDR_KEY;
     }
 

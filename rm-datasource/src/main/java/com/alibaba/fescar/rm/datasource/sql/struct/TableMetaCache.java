@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.sql.struct;
 
 import java.sql.Connection;
@@ -23,14 +22,12 @@ import java.sql.SQLException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fescar.common.exception.ShouldNeverHappenException;
 import com.alibaba.fescar.core.context.RootContext;
 import com.alibaba.fescar.rm.datasource.AbstractConnectionProxy;
 import com.alibaba.fescar.rm.datasource.DataSourceProxy;
-
+import com.alibaba.druid.util.StringUtils;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
@@ -144,7 +141,7 @@ public class TableMetaCache {
             col.setTableName(tableName);
             col.setColumnName(rs2.getString("COLUMN_NAME"));
             String datatype = rs2.getString("DATA_TYPE");
-            if (StringUtils.equalsIgnoreCase(datatype, "NUMBER")) {
+            if (com.alibaba.druid.util.StringUtils.equalsIgnoreCase(datatype, "NUMBER")) {
                 col.setDataType(java.sql.Types.BIGINT);
             } else if (StringUtils.equalsIgnoreCase(datatype, "VARCHAR2")) {
                 col.setDataType(java.sql.Types.VARCHAR);

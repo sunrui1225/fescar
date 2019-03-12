@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.tm.api;
 
 import com.alibaba.fescar.common.exception.ShouldNeverHappenException;
@@ -55,7 +54,9 @@ public class DefaultGlobalTransaction implements GlobalTransaction {
     /**
      * Instantiates a new Default global transaction.
      *
-     * @param xid the xid
+     * @param xid    the xid
+     * @param status the status
+     * @param role   the role
      */
     DefaultGlobalTransaction(String xid, GlobalStatus status, GlobalTransactionRole role) {
         this.transactionManager = DefaultTransactionManager.get();

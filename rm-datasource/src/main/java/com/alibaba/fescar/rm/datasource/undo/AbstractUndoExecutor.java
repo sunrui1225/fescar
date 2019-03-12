@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.undo;
 
 import java.sql.Connection;
@@ -86,7 +85,7 @@ public abstract class AbstractUndoExecutor {
 
         } catch (Exception ex) {
             if (ex instanceof SQLException) {
-                throw (SQLException) ex;
+                throw (SQLException)ex;
             } else {
                 throw new SQLException(ex);
             }
@@ -103,7 +102,8 @@ public abstract class AbstractUndoExecutor {
      * @param pkValue    the pk value
      * @throws SQLException the sql exception
      */
-    protected void undoPrepare(PreparedStatement undoPST, ArrayList<Field> undoValues, Field pkValue) throws SQLException {
+    protected void undoPrepare(PreparedStatement undoPST, ArrayList<Field> undoValues, Field pkValue)
+        throws SQLException {
         int undoIndex = 0;
         for (Field undoValue : undoValues) {
             undoIndex++;

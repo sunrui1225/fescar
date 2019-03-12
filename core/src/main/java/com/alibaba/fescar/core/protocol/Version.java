@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol;
 
 import java.util.Map;
@@ -31,7 +30,7 @@ public class Version {
     /**
      * The constant CURRENT.
      */
-    public static final String CURRENT = "0.2.2";
+    public static final String CURRENT = "0.3.0";
 
     /**
      * The constant VERSION_MAP.

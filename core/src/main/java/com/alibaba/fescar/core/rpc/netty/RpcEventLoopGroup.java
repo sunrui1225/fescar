@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import java.util.concurrent.ThreadFactory;
@@ -23,13 +22,10 @@ import io.netty.channel.EventLoopGroup;
 /**
  * The interface Rpc event loop group.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/12 14:16
- * @FileName: RpcEventLoopGroup
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/12
  */
-public interface RpcEventLoopGroup  {
+public interface RpcEventLoopGroup {
 
     // EventLoopGroup WORKER_GROUP = new RpcEventLoopGroup() {
     //    @Override

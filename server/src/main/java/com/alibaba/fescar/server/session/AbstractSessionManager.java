@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.session;
 
 import java.util.ArrayList;
@@ -107,7 +106,8 @@ public abstract class AbstractSessionManager implements SessionManager, SessionL
     }
 
     @Override
-    public void updateBranchSessionStatus(BranchSession branchSession, BranchStatus status) throws TransactionException {
+    public void updateBranchSessionStatus(BranchSession branchSession, BranchStatus status)
+        throws TransactionException {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("MANAGER[" + name + "] SESSION[" + branchSession + "] " + LogOperation.GLOBAL_ADD);
         }
@@ -116,7 +116,8 @@ public abstract class AbstractSessionManager implements SessionManager, SessionL
     }
 
     @Override
-    public void removeBranchSession(GlobalSession globalSession, BranchSession branchSession) throws TransactionException {
+    public void removeBranchSession(GlobalSession globalSession, BranchSession branchSession)
+        throws TransactionException {
         if (LOGGER.isDebugEnabled()) {
             LOGGER.debug("MANAGER[" + name + "] SESSION[" + branchSession + "] " + LogOperation.GLOBAL_ADD);
         }
@@ -153,7 +154,8 @@ public abstract class AbstractSessionManager implements SessionManager, SessionL
     }
 
     @Override
-    public void onBranchStatusChange(GlobalSession globalSession, BranchSession branchSession, BranchStatus status) throws TransactionException {
+    public void onBranchStatusChange(GlobalSession globalSession, BranchSession branchSession, BranchStatus status)
+        throws TransactionException {
         updateBranchSessionStatus(branchSession, status);
     }
 

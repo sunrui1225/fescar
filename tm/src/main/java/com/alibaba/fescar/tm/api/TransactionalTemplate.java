@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.tm.api;
 
 import com.alibaba.fescar.core.exception.TransactionException;
@@ -28,7 +27,7 @@ public class TransactionalTemplate {
      *
      * @param business the business
      * @return the object
-     * @throws TransactionalExecutor.ExecutionException the execution exception
+     * @throws ExecutionException the execution exception
      */
     public Object execute(TransactionalExecutor business) throws TransactionalExecutor.ExecutionException {
 

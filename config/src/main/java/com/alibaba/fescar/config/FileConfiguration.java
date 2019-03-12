@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.config;
 
 import java.util.ArrayList;
@@ -37,11 +36,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type FileConfiguration.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/10 11:34
- * @FileName: FileConfiguration
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/10
  */
 public class FileConfiguration extends AbstractConfiguration<ConfigChangeListener> {
 

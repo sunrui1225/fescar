@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.session;
 
 import java.nio.ByteBuffer;
@@ -51,7 +50,8 @@ public class BranchSession implements Lockable, Comparable<BranchSession>, Sessi
 
     private String applicationData;
 
-    private ConcurrentHashMap<Map<String, Long>, Set<String>> lockHolder = new ConcurrentHashMap<Map<String, Long>, Set<String>>();
+    private ConcurrentHashMap<Map<String, Long>, Set<String>> lockHolder
+        = new ConcurrentHashMap<Map<String, Long>, Set<String>>();
 
     /**
      * Gets application data.

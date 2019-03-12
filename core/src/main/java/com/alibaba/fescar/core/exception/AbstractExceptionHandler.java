@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.exception;
 
 import com.alibaba.fescar.core.protocol.ResultCode;
@@ -49,7 +48,8 @@ public abstract class AbstractExceptionHandler {
      * @param request  the request
      * @param response the response
      */
-    public void exceptionHandleTemplate(Callback callback, AbstractTransactionRequest request, AbstractTransactionResponse response) {
+    public void exceptionHandleTemplate(Callback callback, AbstractTransactionRequest request,
+                                        AbstractTransactionResponse response) {
         try {
             callback.execute(request, response);
             response.setResultCode(ResultCode.Success);

@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.spring.annotation;
 
 import java.lang.reflect.Method;
@@ -21,11 +20,7 @@ import java.lang.reflect.Method;
 /**
  * The type Method desc.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/28 18:11
- * @FileName: MethodDesc
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
  */
 public class MethodDesc {
     private GlobalTransactional transactionAnnotation;
@@ -35,7 +30,7 @@ public class MethodDesc {
      * Instantiates a new Method desc.
      *
      * @param transactionAnnotation the transaction annotation
-     * @param method                the method
+     * @param method the method
      */
     public MethodDesc(GlobalTransactional transactionAnnotation, Method method) {
         this.transactionAnnotation = transactionAnnotation;

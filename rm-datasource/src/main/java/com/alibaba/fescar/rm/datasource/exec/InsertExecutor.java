@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.exec;
 
 import java.sql.PreparedStatement;
@@ -49,7 +48,8 @@ public class InsertExecutor<T, S extends Statement> extends AbstractDMLBaseExecu
      * @param statementCallback the statement callback
      * @param sqlRecognizer     the sql recognizer
      */
-    public InsertExecutor(StatementProxy statementProxy, StatementCallback statementCallback, SQLRecognizer sqlRecognizer) {
+    public InsertExecutor(StatementProxy statementProxy, StatementCallback statementCallback,
+                          SQLRecognizer sqlRecognizer) {
         super(statementProxy, statementCallback, sqlRecognizer);
     }
 
@@ -71,7 +71,7 @@ public class InsertExecutor<T, S extends Statement> extends AbstractDMLBaseExecu
             for (int paramIdx = 0; paramIdx < insertColumns.size(); paramIdx++) {
                 if (insertColumns.get(paramIdx).equalsIgnoreCase(pk)) {
                     if (statementProxy instanceof PreparedStatementProxy) {
-                        pkValues = ((PreparedStatementProxy) statementProxy).getParamsByIndex(paramIdx);
+                        pkValues = ((PreparedStatementProxy)statementProxy).getParamsByIndex(paramIdx);
                     } else {
                         List<List<Object>> insertRows = recogizier.getInsertRows();
                         pkValues = new ArrayList<>(insertRows.size());

@@ -13,9 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.spring.annotation;
 
+/**
+ * The interface Business.
+ */
 public interface Business {
+    /**
+     * Do biz string.
+     *
+     * @param msg the msg
+     * @return the string
+     */
     String doBiz(String msg);
 }

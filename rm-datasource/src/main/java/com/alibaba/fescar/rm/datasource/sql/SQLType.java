@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.sql;
 
 /**
@@ -215,7 +214,7 @@ public enum SQLType {
 
     private int i;
 
-    private SQLType(int i){
+    private SQLType(int i) {
         this.i = i;
     }
 

@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc;
 
 import java.util.concurrent.BlockingQueue;
@@ -43,11 +42,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Default server message listener.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/18 14:31
- * @FileName: DefaultServerMessageListenerImpl
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/18
  */
 public class DefaultServerMessageListenerImpl implements ServerMessageListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultServerMessageListenerImpl.class);

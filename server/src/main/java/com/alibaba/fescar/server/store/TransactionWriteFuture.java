@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.store;
 
 import java.util.concurrent.CountDownLatch;
@@ -28,11 +27,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Transaction write future.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/10 14:49
- * @FileName: TransactionWriteFuture
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /12/10
  */
 public class TransactionWriteFuture {
     private static final Logger LOGGER = LoggerFactory.getLogger(TransactionWriteFuture.class);

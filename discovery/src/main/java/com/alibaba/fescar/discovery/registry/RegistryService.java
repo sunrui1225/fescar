@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.discovery.registry;
 
 import java.net.InetSocketAddress;
@@ -23,11 +22,8 @@ import java.util.List;
  * The interface Registry service.
  *
  * @param <T> the type parameter
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2019 /1/31 5:13 PM
- * @FileName: RegistryService
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2019 /1/31
  */
 public interface RegistryService<T> {
 

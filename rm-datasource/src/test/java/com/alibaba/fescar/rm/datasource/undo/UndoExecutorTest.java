@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.undo;
 
 import java.io.InputStream;
@@ -560,7 +559,8 @@ public class UndoExecutorTest {
                 }
 
                 @Override
-                public void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength) throws SQLException {
+                public void setObject(int parameterIndex, Object x, int targetSqlType, int scaleOrLength)
+                    throws SQLException {
 
                 }
 
@@ -927,12 +927,14 @@ public class UndoExecutorTest {
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+        public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
+            throws SQLException {
             return null;
         }
 
         @Override
-        public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
+        public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency)
+            throws SQLException {
             return null;
         }
 
@@ -977,17 +979,20 @@ public class UndoExecutorTest {
         }
 
         @Override
-        public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+        public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability)
+            throws SQLException {
             return null;
         }
 
         @Override
-        public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+        public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency,
+                                                  int resultSetHoldability) throws SQLException {
             return null;
         }
 
         @Override
-        public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
+        public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency,
+                                             int resultSetHoldability) throws SQLException {
             return null;
         }
 

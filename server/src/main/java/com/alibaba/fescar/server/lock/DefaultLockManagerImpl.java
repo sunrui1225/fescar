@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.lock;
 
 import java.util.HashMap;
@@ -39,7 +38,10 @@ public class DefaultLockManagerImpl implements LockManager {
 
     private static final int BUCKET_PER_TABLE = 128;
 
-    private static final ConcurrentHashMap<String, ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String, Long>>>> LOCK_MAP = new ConcurrentHashMap<String, ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String, Long>>>>();
+    private static final ConcurrentHashMap<String, ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String,
+        Long>>>>
+        LOCK_MAP
+        = new ConcurrentHashMap<String, ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String, Long>>>>();
 
     @Override
     public boolean acquireLock(BranchSession branchSession) throws TransactionException {
@@ -47,13 +49,14 @@ public class DefaultLockManagerImpl implements LockManager {
         long transactionId = branchSession.getTransactionId();
         ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String, Long>>> dbLockMap = LOCK_MAP.get(resourceId);
         if (dbLockMap == null) {
-            LOCK_MAP.putIfAbsent(resourceId, new ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String, Long>>>());
+            LOCK_MAP.putIfAbsent(resourceId,
+                new ConcurrentHashMap<String, ConcurrentHashMap<Integer, Map<String, Long>>>());
             dbLockMap = LOCK_MAP.get(resourceId);
         }
         ConcurrentHashMap<Map<String, Long>, Set<String>> bucketHolder = branchSession.getLockHolder();
 
         String lockKey = branchSession.getLockKey();
-        if(StringUtils.isEmpty(lockKey)) {
+        if (StringUtils.isNullOrEmpty(lockKey)) {
             return true;
         }
 
@@ -95,7 +98,8 @@ public class DefaultLockManagerImpl implements LockManager {
                         // Locked by me
                         continue;
                     } else {
-                        LOGGER.info("Global lock on [" + tableName + ":" + pk + "] is holding by " + lockingTransactionId);
+                        LOGGER.info(
+                            "Global lock on [" + tableName + ":" + pk + "] is holding by " + lockingTransactionId);
                         branchSession.unlock(); // Release all acquired locks.
                         return false;
                     }

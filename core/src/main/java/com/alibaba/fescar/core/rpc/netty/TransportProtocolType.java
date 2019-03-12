@@ -13,17 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 /**
  * The enum Transport protocol type.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/10 14:32
- * @FileName: TransportProtocolType
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/10
  */
 public enum TransportProtocolType {
     /**

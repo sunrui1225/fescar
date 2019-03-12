@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol.transaction;
 
 import java.nio.ByteBuffer;
@@ -53,7 +52,7 @@ public abstract class AbstractBranchEndResponse extends AbstractTransactionRespo
     @Override
     protected void doEncode() {
         super.doEncode();
-        byteBuffer.put((byte) branchStatus.getCode());
+        byteBuffer.put((byte)branchStatus.getCode());
     }
 
     @Override

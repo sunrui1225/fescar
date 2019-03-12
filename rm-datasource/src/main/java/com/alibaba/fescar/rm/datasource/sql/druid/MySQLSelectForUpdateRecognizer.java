@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.sql.druid;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ import com.alibaba.fescar.rm.datasource.sql.SQLType;
 /**
  * The type My sql select for update recognizer.
  */
-
 public class MySQLSelectForUpdateRecognizer extends BaseRecognizer implements SQLSelectRecognizer {
 
     private final SQLSelectStatement ast;
@@ -49,7 +47,7 @@ public class MySQLSelectForUpdateRecognizer extends BaseRecognizer implements SQ
      */
     public MySQLSelectForUpdateRecognizer(String originalSQL, SQLStatement ast) {
         super(originalSQL);
-        this.ast = (SQLSelectStatement) ast;
+        this.ast = (SQLSelectStatement)ast;
     }
 
     @Override
@@ -76,7 +74,7 @@ public class MySQLSelectForUpdateRecognizer extends BaseRecognizer implements SQ
                 return super.visit(x);
             }
         };
-        visitor.visit((SQLBinaryOpExpr) where);
+        visitor.visit((SQLBinaryOpExpr)where);
         return sb.toString();
     }
 
@@ -89,7 +87,7 @@ public class MySQLSelectForUpdateRecognizer extends BaseRecognizer implements SQ
         }
         StringBuffer sb = new StringBuffer();
         MySqlOutputVisitor visitor = new MySqlOutputVisitor(sb);
-        visitor.visit((SQLBinaryOpExpr) where);
+        visitor.visit((SQLBinaryOpExpr)where);
         return sb.toString();
     }
 

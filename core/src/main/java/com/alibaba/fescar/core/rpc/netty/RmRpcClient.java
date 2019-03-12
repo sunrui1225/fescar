@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import java.util.List;
@@ -57,11 +56,8 @@ import static com.alibaba.fescar.common.Constants.DBKEYS_SPLIT_CHAR;
 /**
  * The type Rm rpc client.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/10 11:27
- * @FileName: RmRpcClient
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/10
  */
 @Sharable
 public final class RmRpcClient extends AbstractRpcRemotingClient {
@@ -442,7 +438,7 @@ public final class RmRpcClient extends AbstractRpcRemotingClient {
                 String serverAddress = entry.getKey();
                 Channel rmChannel = entry.getValue();
                 if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("register AT resourceId:" + resourceId);
+                    LOGGER.info("register resource, resourceId:" + resourceId);
                 }
                 sendRegisterMessage(serverAddress, rmChannel, resourceId);
             }
@@ -505,6 +501,7 @@ public final class RmRpcClient extends AbstractRpcRemotingClient {
      * @return the merged resource keys
      */
     public String getMergedResourceKeys(ResourceManager resourceManager) {
+        //TODO
         Map<String, Resource> managedResources = resourceManager.getManagedResources();
         Set<String> resourceIds = managedResources.keySet();
         if (!resourceIds.isEmpty()) {

@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.lock;
 
 import com.alibaba.fescar.core.exception.TransactionException;
@@ -46,6 +45,7 @@ public interface LockManager {
 
     /**
      * Clean all locks.
+     *
      * @throws TransactionException the transaction exception
      */
     void cleanAllLocks() throws TransactionException;

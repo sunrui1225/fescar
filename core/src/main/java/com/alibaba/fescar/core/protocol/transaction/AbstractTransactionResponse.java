@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol.transaction;
 
 import java.nio.ByteBuffer;
@@ -51,7 +50,7 @@ public abstract class AbstractTransactionResponse extends AbstractResultMessage 
     @Override
     protected void doEncode() {
         super.doEncode();
-        byteBuffer.put((byte) transactionExceptionCode.ordinal());
+        byteBuffer.put((byte)transactionExceptionCode.ordinal());
     }
 
     @Override

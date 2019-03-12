@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import com.alibaba.fastjson.JSON;
@@ -22,12 +21,8 @@ import com.alibaba.fescar.core.protocol.AbstractMessage;
 /**
  * The type Netty pool key.
  *
- * @author min.ji
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /11/29 15:24
- * @FileName: NettyPoolKey
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /11/29
  */
 public class NettyPoolKey {
 

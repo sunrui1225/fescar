@@ -13,17 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc;
 
 /**
  * The interface Remoting service.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/5 17:54
- * @FileName: RemotingService
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/5
  */
 public interface RemotingService {
     /**

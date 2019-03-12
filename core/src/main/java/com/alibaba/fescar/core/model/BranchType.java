@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.model;
 
 /**
@@ -31,7 +30,12 @@ public enum BranchType {
      * The Mt.
      */
     // MT Branch
-    MT;
+    MT,
+    
+    /**
+     * The TCC.
+     */
+    TCC;
 
     /**
      * Get branch type.
@@ -40,7 +44,7 @@ public enum BranchType {
      * @return the branch type
      */
     public static BranchType get(byte ordinal) {
-        return get((int) ordinal);
+        return get((int)ordinal);
     }
 
     /**

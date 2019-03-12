@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.model;
 
 import com.alibaba.fescar.core.exception.TransactionException;
@@ -36,7 +35,8 @@ public interface TransactionManager {
      * @throws TransactionException Any exception that fails this will be wrapped with TransactionException and thrown
      * out.
      */
-    String begin(String applicationId, String transactionServiceGroup, String name, int timeout) throws TransactionException;
+    String begin(String applicationId, String transactionServiceGroup, String name, int timeout)
+        throws TransactionException;
 
     /**
      * Global commit.

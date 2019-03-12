@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import com.alibaba.fescar.common.exception.FrameworkErrorCode;
@@ -32,11 +31,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Rm message listener.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/11 09:56
- * @FileName: RmMessageListener
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/11
  */
 public class RmMessageListener implements ClientMessageListener {
 

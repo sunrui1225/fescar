@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol;
 
 import java.io.Serializable;
@@ -21,11 +20,8 @@ import java.io.Serializable;
 /**
  * The type Register tm response.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/15 17:29
- * @FileName: RegisterTMResponse
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/15
  */
 public class RegisterTMResponse extends AbstractIdentifyResponse implements Serializable {
     private static final long serialVersionUID = 3629846050062228749L;

@@ -13,29 +13,47 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.spring.annotation;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+/**
+ * The type Business proxy.
+ */
 public class BusinessProxy implements InvocationHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BusinessProxy.class);
+
     private Object proxy;
 
+    /**
+     * Instantiates a new Business proxy.
+     *
+     * @param proxy the proxy
+     */
     public BusinessProxy(Object proxy) {
         this.proxy = proxy;
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("before");
+    public Object invoke(Object proxy, Method method, Object[] args) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Before invoking proxy method.");
+        }
         Object result = null;
         try {
             result = method.invoke(this.proxy, args);
         } catch (Exception e) {
-
+            LOGGER.warn("Failed to invoke method {}.", method.getName());
         }
-        System.out.println("after");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("After invoking proxy method.");
+        }
+
         return result;
     }
 }

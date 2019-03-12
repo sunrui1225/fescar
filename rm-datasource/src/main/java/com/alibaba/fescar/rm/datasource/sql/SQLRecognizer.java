@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.sql;
 
 /**
@@ -43,7 +42,7 @@ public interface SQLRecognizer {
      * TableRecords name should be 'user' for this SQL, without alias 'u'.
      *
      * @return table name.
-     * @see #getTableAlias() #getTableAlias()
+     * @see #getTableAlias() #getTableAlias()#getTableAlias()
      */
     String getTableName();
 

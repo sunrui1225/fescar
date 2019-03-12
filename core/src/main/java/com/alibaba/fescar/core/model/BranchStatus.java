@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.model;
 
 import java.util.HashMap;
@@ -98,6 +97,11 @@ public enum BranchStatus {
         this.code = code;
     }
 
+    /**
+     * Gets code.
+     *
+     * @return the code
+     */
     public int getCode() {
         return code;
     }
@@ -117,7 +121,7 @@ public enum BranchStatus {
      * @return the branch status
      */
     public static BranchStatus get(byte code) {
-        return get((int) code);
+        return get((int)code);
     }
 
     /**

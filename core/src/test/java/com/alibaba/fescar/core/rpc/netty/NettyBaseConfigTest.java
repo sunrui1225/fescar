@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import org.junit.Test;
@@ -21,12 +20,8 @@ import org.junit.Test;
 /**
  * The type Netty base config test.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: feats -all
- * @DateTime: 2019 /1/7 2:04 PM
- * @FileName: NettyBaseConfigTest
- * @Description:
- * @date 2019 /01/07
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2019 /1/7
  */
 public class NettyBaseConfigTest {
     /**

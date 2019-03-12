@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.discovery.loadbalance;
 
 import java.util.List;
@@ -23,7 +22,7 @@ import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 /**
  * The type Abstract load balance.
  *
- * @author: jimin.jm @alibaba-inc.com
+ * @author jimin.jm @alibaba-inc.com
  * @date 2019 /02/12
  */
 public abstract class AbstractLoadBalance implements LoadBalance {

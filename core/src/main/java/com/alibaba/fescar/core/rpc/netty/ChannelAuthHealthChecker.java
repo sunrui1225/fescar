@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc.netty;
 
 import io.netty.channel.Channel;
@@ -24,13 +23,10 @@ import io.netty.util.concurrent.Future;
 /**
  * The interface Channel auth health checker.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/25 13:52
- * @FileName: ChannelAuthHealthChecker
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/25
  */
-public interface ChannelAuthHealthChecker extends ChannelHealthChecker{
+public interface ChannelAuthHealthChecker extends ChannelHealthChecker {
     /**
      * The constant ACTIVE.
      */
@@ -38,7 +34,7 @@ public interface ChannelAuthHealthChecker extends ChannelHealthChecker{
         @Override
         public Future<Boolean> isHealthy(Channel channel) {
             EventLoop loop = channel.eventLoop();
-            return channel.isActive()? loop.newSucceededFuture(Boolean.TRUE) : loop.newSucceededFuture(Boolean.FALSE);
+            return channel.isActive() ? loop.newSucceededFuture(Boolean.TRUE) : loop.newSucceededFuture(Boolean.FALSE);
         }
     };
 }

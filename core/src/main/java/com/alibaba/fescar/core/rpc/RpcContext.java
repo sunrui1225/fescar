@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc;
 
 import java.net.SocketAddress;
@@ -33,11 +32,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type rpc context.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/07 10:51
- * @FileName: RpcContext
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /12/07
  */
 public class RpcContext {
 

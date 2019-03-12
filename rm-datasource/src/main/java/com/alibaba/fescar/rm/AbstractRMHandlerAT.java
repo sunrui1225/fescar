@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm;
 
 import com.alibaba.fescar.common.exception.ShouldNeverHappenException;
@@ -33,6 +32,7 @@ import com.alibaba.fescar.core.rpc.TransactionMessageHandler;
 /**
  * The type Abstract rm handler at.
  */
+@Deprecated
 public abstract class AbstractRMHandlerAT extends AbstractExceptionHandler
     implements RMInboundHandler, TransactionMessageHandler {
 
@@ -41,7 +41,8 @@ public abstract class AbstractRMHandlerAT extends AbstractExceptionHandler
         BranchCommitResponse response = new BranchCommitResponse();
         exceptionHandleTemplate(new Callback<BranchCommitRequest, BranchCommitResponse>() {
             @Override
-            public void execute(BranchCommitRequest request, BranchCommitResponse response) throws TransactionException {
+            public void execute(BranchCommitRequest request, BranchCommitResponse response)
+                throws TransactionException {
                 doBranchCommit(request, response);
             }
         }, request, response);
@@ -55,14 +56,16 @@ public abstract class AbstractRMHandlerAT extends AbstractExceptionHandler
      * @param response the response
      * @throws TransactionException the transaction exception
      */
-    protected abstract void doBranchCommit(BranchCommitRequest request, BranchCommitResponse response) throws TransactionException;
+    protected abstract void doBranchCommit(BranchCommitRequest request, BranchCommitResponse response)
+        throws TransactionException;
 
     @Override
     public BranchRollbackResponse handle(BranchRollbackRequest request) {
         BranchRollbackResponse response = new BranchRollbackResponse();
         exceptionHandleTemplate(new Callback<BranchRollbackRequest, BranchRollbackResponse>() {
             @Override
-            public void execute(BranchRollbackRequest request, BranchRollbackResponse response) throws TransactionException {
+            public void execute(BranchRollbackRequest request, BranchRollbackResponse response)
+                throws TransactionException {
                 doBranchRollback(request, response);
             }
         }, request, response);
@@ -76,14 +79,15 @@ public abstract class AbstractRMHandlerAT extends AbstractExceptionHandler
      * @param response the response
      * @throws TransactionException the transaction exception
      */
-    protected abstract void doBranchRollback(BranchRollbackRequest request, BranchRollbackResponse response) throws TransactionException;
+    protected abstract void doBranchRollback(BranchRollbackRequest request, BranchRollbackResponse response)
+        throws TransactionException;
 
     @Override
     public AbstractResultMessage onRequest(AbstractMessage request, RpcContext context) {
         if (!(request instanceof AbstractTransactionRequestToRM)) {
             throw new IllegalArgumentException();
         }
-        AbstractTransactionRequestToRM transactionRequest = (AbstractTransactionRequestToRM) request;
+        AbstractTransactionRequestToRM transactionRequest = (AbstractTransactionRequestToRM)request;
         transactionRequest.setRMInboundMessageHandler(this);
 
         return transactionRequest.handle(context);

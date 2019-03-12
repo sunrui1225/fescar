@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.common.util;
 
 import java.net.InetAddress;
@@ -29,17 +28,13 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Net util.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/10 12:14
- * @FileName: NetUtil
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
  */
 public class NetUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(NetUtil.class);
     private static final String LOCALHOST = "127.0.0.1";
 
-    private static final String ANYHOST = "0.0.0.0";
+    private static final String ANY_HOST = "0.0.0.0";
 
     private static volatile InetAddress LOCAL_ADDRESS = null;
 
@@ -52,7 +47,7 @@ public class NetUtil {
      * @return the string
      */
     public static String toStringAddress(SocketAddress address) {
-        return toStringAddress((InetSocketAddress) address);
+        return toStringAddress((InetSocketAddress)address);
     }
 
     /**
@@ -102,7 +97,7 @@ public class NetUtil {
      * @param address the address
      * @return the long
      */
-    public static long toLong(String address){
+    public static long toLong(String address) {
         InetSocketAddress ad = toInetSocketAddress(address);
         String[] ip = ad.getAddress().getHostAddress().split("\\.");
         long r = 0;
@@ -189,11 +184,22 @@ public class NetUtil {
         return localAddress;
     }
 
+    /**
+     * Valid address.
+     *
+     * @param address the address
+     */
+    public static void validAddress(InetSocketAddress address) {
+        if (null == address.getHostName() || 0 == address.getPort()) {
+            throw new IllegalArgumentException("invalid address:" + address);
+        }
+    }
+
     private static boolean isValidAddress(InetAddress address) {
         if (address == null || address.isLoopbackAddress()) {
             return false;
         }
         String name = address.getHostAddress();
-        return (name != null && !ANYHOST.equals(name) && !LOCALHOST.equals(name) && IP_PATTERN.matcher(name).matches());
+        return (name != null && !ANY_HOST.equals(name) && !LOCALHOST.equals(name) && IP_PATTERN.matcher(name).matches());
     }
 }

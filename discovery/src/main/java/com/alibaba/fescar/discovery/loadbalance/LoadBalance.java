@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.discovery.loadbalance;
 
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
 /**
  * The interface Load balance.
  *
- * @author: jimin.jm @alibaba-inc.com
+ * @author jimin.jm @alibaba-inc.com
  * @date 2019 /02/12
  */
 public interface LoadBalance {

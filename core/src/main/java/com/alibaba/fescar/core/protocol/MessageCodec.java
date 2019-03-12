@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol;
 
 import io.netty.buffer.ByteBuf;
@@ -21,11 +20,8 @@ import io.netty.buffer.ByteBuf;
 /**
  * The interface Message codec.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /9/14 15:11
- * @FileName: MessageCodec
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /9/14
  */
 public interface MessageCodec {
     /**

@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.config;
 
 import java.util.List;
@@ -22,11 +21,8 @@ import java.util.List;
  * The interface Configuration.
  *
  * @param <T> the type parameter
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/20 14:22
- * @FileName: Configuration
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /12/20
  */
 public interface Configuration<T> {
 

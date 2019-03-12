@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol;
 
 /**
@@ -40,7 +39,7 @@ public enum ResultCode {
      * @return the result code
      */
     public static ResultCode get(byte ordinal) {
-        return get((int) ordinal);
+        return get((int)ordinal);
     }
 
     /**

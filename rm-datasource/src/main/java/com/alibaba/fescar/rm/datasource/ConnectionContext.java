@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource;
 
 import java.util.ArrayList;
@@ -29,8 +28,27 @@ import com.alibaba.fescar.rm.datasource.undo.SQLUndoLog;
 public class ConnectionContext {
     private String xid;
     private Long branchId;
+    private boolean isGlobalLockRequire;
     private List<String> lockKeysBuffer = new ArrayList<>();
     private List<SQLUndoLog> sqlUndoItemsBuffer = new ArrayList<>();
+
+    /**
+     * whether requires global lock in this connection
+     *
+     * @return
+     */
+    boolean isGlobalLockRequire() {
+        return isGlobalLockRequire;
+    }
+
+    /**
+     * set whether requires global lock in this connection
+     *
+     * @param isGlobalLockRequires
+     */
+    void setGlobalLockRequire(boolean isGlobalLockRequire) {
+        this.isGlobalLockRequire = isGlobalLockRequire;
+    }
 
     /**
      * Append lock key.

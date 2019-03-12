@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.server.store;
 
 import java.nio.ByteBuffer;
@@ -26,11 +25,8 @@ import com.alibaba.fescar.server.store.TransactionStoreManager.LogOperation;
 /**
  * The type Transaction write store.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /12/11 15:58
- * @FileName: TransactionWriteStore
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /12/11
  */
 public class TransactionWriteStore implements SessionStorable {
     private SessionStorable sessionRequest;

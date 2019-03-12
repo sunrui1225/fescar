@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.sql.druid;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import org.junit.Test;
 /**
  * The type My sql delete recognizer test.
  *
- * @author hanwen  created at 2019-01-25
+ * @author hanwen created at 2019-01-25
  */
 public class MySQLDeleteRecognizerTest extends AbstractMySQLRecognizerTest {
 

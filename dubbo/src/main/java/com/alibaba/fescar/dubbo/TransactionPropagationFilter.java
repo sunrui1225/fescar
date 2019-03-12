@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.dubbo;
 
 import com.alibaba.fescar.core.context.RootContext;
@@ -32,7 +31,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Transaction propagation filter.
  */
-@Activate(group = { Constants.PROVIDER, Constants.CONSUMER }, order = 100)
+@Activate(group = {Constants.PROVIDER, Constants.CONSUMER}, order = 100)
 public class TransactionPropagationFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TransactionPropagationFilter.class);

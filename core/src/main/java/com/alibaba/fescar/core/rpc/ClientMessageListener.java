@@ -13,17 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.rpc;
 
 /**
  * The interface Client message listener.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: fescar -all
- * @DateTime: 2018 /10/10 15:30
- * @FileName: ClientMessageListener
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2018 /10/10
  */
 public interface ClientMessageListener {
     /**

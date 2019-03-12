@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.tm.api;
 
 import org.slf4j.Logger;
@@ -22,11 +21,8 @@ import org.slf4j.LoggerFactory;
 /**
  * The type Default failure handler.
  *
- * @Author: jimin.jm @alibaba-inc.com
- * @Project: feats -all
- * @DateTime: 2019 /1/8 7:27 PM
- * @FileName: DefaultFailureHandlerImpl
- * @Description:
+ * @author jimin.jm @alibaba-inc.com
+ * @date 2019 /1/8
  */
 public class DefaultFailureHandlerImpl implements FailureHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultFailureHandlerImpl.class);

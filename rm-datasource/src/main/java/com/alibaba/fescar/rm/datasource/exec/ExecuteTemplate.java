@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource.exec;
 
 import java.sql.SQLException;
@@ -63,7 +62,7 @@ public class ExecuteTemplate {
                                                      StatementCallback<T, S> statementCallback,
                                                      Object... args) throws SQLException {
 
-        if (!RootContext.inGlobalTransaction()) {
+        if (!RootContext.inGlobalTransaction() && !RootContext.requireGlobalLock()) {
             // Just work as original statement
             return statementCallback.execute(statementProxy.getTargetStatement(), args);
         }
@@ -101,7 +100,7 @@ public class ExecuteTemplate {
 
         } catch (Throwable ex) {
             if (ex instanceof SQLException) {
-                throw (SQLException) ex;
+                throw (SQLException)ex;
             } else {
                 // Turn everything into SQLException
                 new SQLException(ex);

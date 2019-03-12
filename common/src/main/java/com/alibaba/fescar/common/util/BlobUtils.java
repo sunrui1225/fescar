@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.common.util;
 
 import java.io.ByteArrayOutputStream;
@@ -63,7 +62,7 @@ public class BlobUtils {
         }
 
         try {
-            return new String(blob.getBytes((long) 1, (int) blob.length()));
+            return new String(blob.getBytes((long)1, (int)blob.length()));
         } catch (Exception e) {
             throw new ShouldNeverHappenException(e);
         }

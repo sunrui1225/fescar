@@ -13,12 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.protocol.transaction;
 
 import java.nio.ByteBuffer;
 
 import com.alibaba.fescar.core.model.BranchStatus;
+import com.alibaba.fescar.core.model.BranchType;
 import com.alibaba.fescar.core.protocol.MergedMessage;
 import com.alibaba.fescar.core.rpc.RpcContext;
 
@@ -36,6 +36,8 @@ public class BranchReportRequest extends AbstractTransactionRequestToTC implemen
     private BranchStatus status;
 
     private String applicationData;
+
+    private BranchType branchType = BranchType.AT;
 
     /**
      * Gets transaction id.
@@ -89,6 +91,24 @@ public class BranchReportRequest extends AbstractTransactionRequestToTC implemen
      */
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
+    }
+
+    /**
+     * Gets branch type.
+     *
+     * @return the branch type
+     */
+    public BranchType getBranchType() {
+        return branchType;
+    }
+
+    /**
+     * Sets branch type.
+     *
+     * @param branchType the branch type
+     */
+    public void setBranchType(BranchType branchType) {
+        this.branchType = branchType;
     }
 
     /**
@@ -147,16 +167,16 @@ public class BranchReportRequest extends AbstractTransactionRequestToTC implemen
         // 2. Branch Id
         byteBuffer.putLong(this.branchId);
         // 3. Branch Status
-        byteBuffer.put((byte) this.status.getCode());
+        byteBuffer.put((byte)this.status.getCode());
         // 4. Resource Id
         if (this.resourceId != null) {
             byte[] bs = resourceId.getBytes(UTF8);
-            byteBuffer.putShort((short) bs.length);
+            byteBuffer.putShort((short)bs.length);
             if (bs.length > 0) {
                 byteBuffer.put(bs);
             }
         } else {
-            byteBuffer.putShort((short) 0);
+            byteBuffer.putShort((short)0);
         }
 
         // 5. Application Data
@@ -168,6 +188,8 @@ public class BranchReportRequest extends AbstractTransactionRequestToTC implemen
         } else {
             byteBuffer.putInt(0);
         }
+        //6. branchType
+        byteBuffer.put((byte) this.branchType.ordinal());
 
         byteBuffer.flip();
         byte[] content = new byte[byteBuffer.limit()];
@@ -193,6 +215,7 @@ public class BranchReportRequest extends AbstractTransactionRequestToTC implemen
             byteBuffer.get(bs);
             this.applicationData = new String(bs, UTF8);
         }
+        this.branchType = BranchType.get(byteBuffer.get());
     }
 
     @Override

@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.core.exception;
 
 import java.util.HashMap;
@@ -131,7 +130,7 @@ public enum TransactionExceptionCode {
      * @return the transaction exception code
      */
     public static TransactionExceptionCode get(byte ordinal) {
-        return get((int) ordinal);
+        return get((int)ordinal);
     }
 
     /**

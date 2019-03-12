@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.alibaba.fescar.rm.datasource;
 
 import java.sql.PreparedStatement;
@@ -27,7 +26,8 @@ import com.alibaba.fescar.rm.datasource.exec.StatementCallback;
 /**
  * The type Prepared statement proxy.
  */
-public class PreparedStatementProxy extends AbstractPreparedStatementProxy implements PreparedStatement, ParametersHolder {
+public class PreparedStatementProxy extends AbstractPreparedStatementProxy
+    implements PreparedStatement, ParametersHolder {
 
     @Override
     public ArrayList<Object>[] getParameters() {
@@ -50,7 +50,8 @@ public class PreparedStatementProxy extends AbstractPreparedStatementProxy imple
      * @param targetSQL       the target sql
      * @throws SQLException the sql exception
      */
-    public PreparedStatementProxy(AbstractConnectionProxy connectionProxy, PreparedStatement targetStatement, String targetSQL) throws SQLException {
+    public PreparedStatementProxy(AbstractConnectionProxy connectionProxy, PreparedStatement targetStatement,
+                                  String targetSQL) throws SQLException {
         super(connectionProxy, targetStatement, targetSQL);
         init();
     }
