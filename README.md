@@ -1,4 +1,4 @@
-<img src="https://github.com/seata/seata-samples/blob/master/doc/img/seata.png"  height="60" width="160">
+<img src="https://github.com/seata/seata-samples/blob/master/doc/img/seata.png"  height="50" width="150">
 
 # Seata: Simple Extensible Autonomous Transaction Architecture
 
