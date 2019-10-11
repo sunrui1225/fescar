@@ -15,7 +15,6 @@
  */
 package io.seata.server.lock.memory;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,6 +40,7 @@ import io.seata.server.session.BranchSession;
 public class MemoryLocker extends AbstractLocker {
 
     private static final int BUCKET_PER_TABLE = 128;
+    private static final String TABLE_ID = "$$table.id$$";
 
     private static final ConcurrentMap<String/* resourceId */,
         ConcurrentMap<String/* tableName */,
@@ -93,6 +93,7 @@ public class MemoryLocker extends AbstractLocker {
             if (bucketLockMap == null) {
                 tableLockMap.putIfAbsent(bucketId, new ConcurrentHashMap<>());
                 bucketLockMap = tableLockMap.get(bucketId);
+                bucketLockMap.putIfAbsent(TABLE_ID, (long)tableName.hashCode());
             }
             Long previousLockTransactionId = bucketLockMap.putIfAbsent(pk, transactionId);
             if (previousLockTransactionId == null) {
@@ -120,6 +121,15 @@ public class MemoryLocker extends AbstractLocker {
         return true;
     }
 
+    /**
+     * The lockHolder's each key holds all the transaction lock data under the table's fragment(pk.hashcode()%128)
+     * associated with the branchSession;
+     * the lockHolder's each value holds the lockkey of the current transaction corresponding to all the pk data under
+     * the same tablename and same fragment.So when delete the branchSession's lock is traversed by the value of
+     * lockHolder, the time complexity is O(1).
+     * @param rowLock the row lock
+     * @return
+     */
     @Override
     public boolean releaseLock(List<RowLock> rowLock) {
         ConcurrentMap<ConcurrentMap<String, Long>, Set<String>> lockHolder = branchSession.getLockHolder();
